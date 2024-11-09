@@ -1,16 +1,27 @@
-# This is a sample Python script.
+# main.py
+from game import HangmanGame
+from player import Player
+from ai_player import AIPlayer
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+def main():
+    while True:
+        print("Welcome to Hangman!")
+        mode = input("Choose player type - Human (H) or AI (A): ").strip().lower()
+        if mode == 'h':
+            player = Player()
+        elif mode == 'a':
+            player = AIPlayer()
+        else:
+            print("Invalid choice. Please enter 'H' for Human or 'A' for AI.")
+            continue
 
+        game = HangmanGame(player)
+        game.play()
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+        play_again = input("Do you want to play again? (Y/N): ").strip().lower()
+        if play_again != 'y':
+            print("Thank you for playing Hangman!")
+            break
 
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    main()
