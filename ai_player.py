@@ -4,7 +4,7 @@ import torch
 import torch.nn as nn
 
 class AIPlayer:
-    def __init__(self, model_path='hangman_model.pth', train=False):
+    def __init__(self, model_path, train=False):
         self.all_letters = set(string.ascii_lowercase)
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.model = HangmanLSTM().to(self.device)
