@@ -1,10 +1,16 @@
+import os
 import string
 import numpy as np
+import psutil
 import torch
 import torch.nn as nn
-
+import json
 class AIPlayer:
     def __init__(self, model_path, train=False):
+
+        self.filename = f"{model_path.rstrip('.pth')}_cpu_usage_log.json"
+        self.clear_json()
+
         self.all_letters = set(string.ascii_lowercase)
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.model = HangmanLSTM().to(self.device)
@@ -12,13 +18,14 @@ class AIPlayer:
             self.model.load_state_dict(torch.load(model_path, map_location=self.device, weights_only=True))
         self.model.eval()
         self.guessed_letters = set()
+        self.guess_number = 0
 
     def reset(self):
         self.guessed_letters = set()
 
     def guess(self, guessed_letters, word_display):
         self.guessed_letters = guessed_letters
-
+        self.guess_number += 1
         word_vector = self.encode_word_state(word_display)
         guessed_vector = self.encode_guessed_letters()
 
@@ -35,6 +42,10 @@ class AIPlayer:
         # Choose the letter with the highest probability
         guess = chr(np.argmax(output) + ord('a'))
         print(f"AI guesses: {guess}")
+
+        cpu_usage = self.calculate_cpu_usage()
+        
+        self.write_cpu_usage(cpu_usage)
         return guess
 
     def encode_word_state(self, word_display):
@@ -52,7 +63,30 @@ class AIPlayer:
             guessed_vector[ord(letter) - ord('a')] = 1
         return guessed_vector
 
+    def calculate_cpu_usage(self):
 
+        return {
+            '1s': psutil.cpu_percent(interval=1),
+            '5s': psutil.cpu_percent(interval=5),
+            '10s': psutil.cpu_percent(interval=10),
+            '15s': psutil.cpu_percent(interval=15)
+        }
+
+    def write_cpu_usage(self, cpu_usage):
+        data = {
+            'guess_number': self.guess_number,
+            'cpu_usage': cpu_usage
+        }
+
+        with open(self.filename, "a") as json_file:
+            json.dump(data, json_file)
+            json_file.write("\n")
+
+    def clear_json(self):
+
+        if os.path.exists(self.filename):
+            with open(self.filename, 'w') as json_file:
+                json_file.truncate(0) 
 class HangmanLSTM(nn.Module):
     def __init__(self):
         super(HangmanLSTM, self).__init__()
