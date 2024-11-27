@@ -3,14 +3,21 @@ import argparse
 from game import HangmanGame
 from ai_player import AIPlayer
 from train_model import Train_Model
+import time
 
 def main(model_filename, num_workers, hangman_word):
+
+    start_time = time.time()
 
     Train_Model(model_filename, num_workers)
     player = AIPlayer(model_filename)
 
     game = HangmanGame(player, hangman_word)
     game.play()
+
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print(f"Time Played: {elapsed_time} seconds")
 
 if __name__ == '__main__':
 
