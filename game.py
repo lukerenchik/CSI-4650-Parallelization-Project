@@ -1,9 +1,9 @@
 # game.py
-import random
 
 class HangmanGame:
-    def __init__(self, player):
+    def __init__(self, player, word):
         self.player = player
+        self.word = word
 
     def load_words(self):
         # Load words from words.txt
@@ -17,7 +17,7 @@ class HangmanGame:
 
     def play(self):
         self.word_list = self.load_words()
-        self.word = random.choice(self.word_list)
+
         self.word_letters = set(self.word)
         self.guessed_letters = set()
         self.lives = 6  # Number of allowed mistakes
