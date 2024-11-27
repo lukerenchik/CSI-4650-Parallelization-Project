@@ -80,9 +80,9 @@ class Train_Model():
 
     def train_model(self, word_list, model_path, num_workers):
 
-        num_samples=5000
-        epochs=10
-        batch_size=32
+        num_samples=5
+        epochs=5
+        batch_size=16
         lr=0.001
 
         """Train the HangmanLSTM model."""
