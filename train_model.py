@@ -3,35 +3,43 @@ import torch.nn as nn
 import torch.optim as optim
 import random
 import numpy as np
-from new_ai_player import HangmanLSTM
+from ai_player import HangmanLSTM
+import multiprocessing
+
+def generate_sample(_, word_list, max_word_length):
+    word = random.choice(word_list)
+    word_letters = set(word)
+    guessed_letters = set()
+    obscured_word = ['_' for _ in word]
+
+    while len(guessed_letters) < len(word_letters):
+        next_letter = random.choice(list(word_letters - guessed_letters))
+        guessed_letters.add(next_letter)
+
+        for i, char in enumerate(word):
+            if char in guessed_letters:
+                obscured_word[i] = char
+
+        word_input = encode_word_state(''.join(obscured_word), max_word_length)
+        guessed_input = encode_guessed_letters(guessed_letters)
+        target_letter = ord(next_letter) - ord('a')
+
+        if '_' in ''.join(obscured_word):
+            # Repeat to balance the dataset
+            return [(word_input, guessed_input, target_letter)] * 3
+        else:
+            return [(word_input, guessed_input, target_letter)]
 
 def generate_training_data(word_list, num_samples, max_word_length=10):
-    """Generate training data based on word list."""
+    """Generate training data based on word list in parallel."""
     print("Generating training data...")
-    data = []
-    for _ in range(num_samples):
-        word = random.choice(word_list)
-        word_letters = set(word)
-        guessed_letters = set()
-        obscured_word = ['_' for _ in word]
 
-        while len(guessed_letters) < len(word_letters):
-            next_letter = random.choice(list(word_letters - guessed_letters))
-            guessed_letters.add(next_letter)
+    # Parallize
+    with multiprocessing.Pool() as pool:
+        data = pool.starmap(generate_sample, [(i, word_list, max_word_length) for i in range(num_samples)])
 
-            for i, char in enumerate(word):
-                if char in guessed_letters:
-                    obscured_word[i] = char
-
-            word_input = encode_word_state(''.join(obscured_word), max_word_length)
-            guessed_input = encode_guessed_letters(guessed_letters)
-            target_letter = ord(next_letter) - ord('a')
-
-            if '_' in ''.join(obscured_word):
-                for _ in range(3):  # Repeat to balance the dataset
-                    data.append((word_input, guessed_input, target_letter))
-            else:
-                data.append((word_input, guessed_input, target_letter))
+    # Flatten the list of samples
+    data = [item for sublist in data for item in sublist]
     print(f"Generated {len(data)} training samples.")
     return data
 
@@ -52,7 +60,13 @@ def encode_guessed_letters(guessed_letters):
         guessed_vector[ord(letter) - ord('a')] = 1
     return guessed_vector
 
-def train_model(word_list, model_path='hangman_model.pth', num_samples=10000, epochs=25, batch_size=32, lr=0.001):
+def train_model(word_list, model_path, num_workers):
+
+    num_samples=5000
+    epochs=10
+    batch_size=32
+    lr=0.001
+
     """Train the HangmanLSTM model."""
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
@@ -69,7 +83,7 @@ def train_model(word_list, model_path='hangman_model.pth', num_samples=10000, ep
     # Create DataLoader
     print("Creating DataLoader...")
     dataset = torch.utils.data.TensorDataset(inputs_word, inputs_guessed, targets)
-    dataloader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=True, num_workers=0)
+    dataloader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=True, num_workers=num_workers)
 
     # Initialize model
     model = HangmanLSTM().to(device)
@@ -114,5 +128,5 @@ if __name__ == "__main__":
 
     # Train the model
     print("Starting training...")
-    train_model(word_list, model_path="hangman_model.pth", num_samples=20000, epochs=25, batch_size=32, lr=0.001)
+    train_model(word_list, model_path="slower_hangman_model.pth", num_workers=4)
     print("Training completed.")
