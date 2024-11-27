@@ -8,7 +8,7 @@ import json
 class AIPlayer:
     def __init__(self, model_path, train=False):
 
-        self.filename = f"{model_path.rstrip('.pth')}_cpu_usage_log.json"
+        self.filename = f"{model_path.rstrip('.pth')}_cpu_usage.json"
         self.clear_json()
 
         self.all_letters = set(string.ascii_lowercase)
