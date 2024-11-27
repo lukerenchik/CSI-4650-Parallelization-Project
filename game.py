@@ -21,6 +21,8 @@ class HangmanGame:
         self.word_letters = set(self.word)
         self.guessed_letters = set()
         self.lives = 6  # Number of allowed mistakes
+        self.correct_guesses = 0
+        self.total_guesses = 0
 
         while self.lives > 0 and not self.word_letters.issubset(self.guessed_letters):
             print(f"\nYou have {self.lives} lives left.")
@@ -30,6 +32,7 @@ class HangmanGame:
             print('Word: ' + ' '.join(word_display))
 
             guess = self.player.guess(self.guessed_letters, word_display)
+            self.total_guesses += 1
 
             if guess in self.word_letters:
                 if guess in self.guessed_letters:
@@ -37,6 +40,7 @@ class HangmanGame:
                 else:
                     print(f"Good guess: {guess}")
                     self.guessed_letters.add(guess)
+                    self.correct_guesses += 1 
             else:
                 if guess in self.guessed_letters:
                     print(f"You have already guessed '{guess}'.")
@@ -49,3 +53,12 @@ class HangmanGame:
             print(f"\nCongratulations! You guessed the word: {self.word}")
         else:
             print(f"\nGame over! The word was: {self.word}")
+        
+        self.calculate_accuracy()
+
+    def calculate_accuracy(self):
+        if self.total_guesses > 0:
+            accuracy = (self.correct_guesses / self.total_guesses) * 100
+            print(f"Guess rate was {accuracy:.2f}%")
+        else:
+            print("No guesses were made.")
