@@ -67,9 +67,9 @@ class AIPlayer:
 
         return {
             '1s': psutil.cpu_percent(interval=1),
+            '2s': psutil.cpu_percent(interval=2),
             '5s': psutil.cpu_percent(interval=5),
-            '10s': psutil.cpu_percent(interval=10),
-            '15s': psutil.cpu_percent(interval=15)
+            '10s': psutil.cpu_percent(interval=10)
         }
 
     def write_cpu_usage(self, cpu_usage):
