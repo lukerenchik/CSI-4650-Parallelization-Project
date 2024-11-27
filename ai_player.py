@@ -9,7 +9,7 @@ class AIPlayer:
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.model = HangmanLSTM().to(self.device)
         if not train:
-            self.model.load_state_dict(torch.load(model_path, map_location=self.device))
+            self.model.load_state_dict(torch.load(model_path, map_location=self.device, weights_only=True))
         self.model.eval()
         self.guessed_letters = set()
 
