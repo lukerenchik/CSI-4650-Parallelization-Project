@@ -4,7 +4,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 import time
-from new_ai_player import HangmanLSTM  # Import your LSTM model
+from new_ai_player import HangmanLSTM  # Import my LSTM model
 import random
 import numpy as np
 
@@ -137,5 +137,5 @@ def train_model(word_list, model_path="hangman_model_cpu_parallel.pth", num_samp
     print(f"Model saved to {model_path}")
 
 if __name__ == "__main__":
-    word_list = ["example", "hangman", "player", "training"]  # Replace with your actual word list
+    word_list = ["example", "hangman", "player", "training"]  # Replace with my actual word list later
     train_model(word_list)
