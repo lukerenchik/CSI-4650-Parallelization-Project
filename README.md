@@ -29,8 +29,8 @@ This project implements an AI Hangman game using PyTorch, designed to showcase t
 
 The project consists of two main scripts:
 
-- **Non-Parallel Training Script (`train_model.py`)**: Trains the Hangman AI model without parallel data generation.
-- **Parallel Training Script (`train_model_parallel.py`)**: Utilizes multiprocessing to generate training data in parallel, and leverages GPU acceleration if available.
+- **Non-Parallel Training Script (`train_model_non_parallelize.py`)**: Trains the Hangman AI model without parallel data generation.
+- **Parallel Training Script (`train_model_parallelize.py`)**: Utilizes multiprocessing to generate training data in parallel, and leverages GPU acceleration if available.
 
 Both scripts train an LSTM-based neural network (`HangmanLSTM` from `new_ai_player.py`) to predict the next letter in a game of Hangman, based on the current state of the word and the letters already guessed.
 
@@ -54,8 +54,8 @@ Both scripts train an LSTM-based neural network (`HangmanLSTM` from `new_ai_play
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/ai-hangman.git
-   cd ai-hangman
+   git clone https://github.com/lukerenchik/CSI-4650-Parallelization-Project/
+   cd CSI-4650-Parallelization-Project/
    
 
 2. **Install Dependencies**
