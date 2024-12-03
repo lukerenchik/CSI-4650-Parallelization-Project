@@ -38,7 +38,7 @@ Both scripts train an LSTM-based neural network (`HangmanLSTM` from `new_ai_play
 - Python 3.6 or higher
 - PyTorch (with CUDA support for GPU acceleration)
 - NumPy
-- We utilized CUDA 12.4 & matching Torch Library
+- We utilized CUDA 12.4 & associated Torch version
 
 ### Steps
 
