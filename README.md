@@ -75,7 +75,7 @@ Both scripts train an LSTM-based neural network (`HangmanLSTM` from `new_ai_play
    
    Find matching torch wheel on: https://pytorch.org/
    
-   Install Remaining Dependency
+   - Install Remaining Dependency
    ```bash
    pip install numpy
    ```
