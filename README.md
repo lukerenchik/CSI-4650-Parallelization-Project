@@ -65,21 +65,25 @@ Both scripts train an LSTM-based neural network (`HangmanLSTM` from `new_ai_play
    
    ```bash
    nvidia-smi
-
+   ```
+   
    - To check CUDA toolkit version, run
    
    ```bash 
    nvcc --version
+   ```
    
    Find matching torch wheel on: https://pytorch.org/
    
    Install Remaining Dependency
    ```bash
    pip install numpy
-
+   ```
+   
    On Colab:
    ```bash
    pip install torch numpy
+   ```
    
 3. **Prepare the Word List**
     - Ensure you have a words.txt in the project directory with a list of words, one per line.
