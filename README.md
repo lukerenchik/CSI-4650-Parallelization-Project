@@ -8,7 +8,8 @@
 4. [Installation](#installation)
    - [Prerequisites](#prerequisites)
    - [Steps](#steps)
-5. [Conclusion](#conclusion)
+5. [Usage](#Usage)
+6. [Conclusion](#conclusion)
 
 
 ## Introduction
@@ -79,7 +80,11 @@ Both scripts train an LSTM-based neural network (`HangmanLSTM` from `new_ai_play
 3. **Prepare the Word List**
     - Ensure you have a words.txt in the project directory with a list of words, one per line.
 
+##Usage
 
+CPU (Non-paralellized): train_model_non_paralellize.py
+CPU (Paralellized): train_model_non_paralellize.py
+GPU: GPU_Parallelize.py
 
 ## Conclusion
 
