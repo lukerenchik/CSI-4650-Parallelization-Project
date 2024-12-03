@@ -8,18 +8,8 @@
 4. [Installation](#installation)
    - [Prerequisites](#prerequisites)
    - [Steps](#steps)
-5. [Usage](#usage)
-   - [Running the Non-Parallel Training Script](#running-the-non-parallel-training-script)
-   - [Running the Parallel Training Script](#running-the-parallel-training-script)
-6. [Results and Findings](#results-and-findings)
-   - [Training Time Comparison](#training-time-comparison)
-     - [Non-Parallel Training on CPU](#non-parallel-training-on-cpu)
-     - [Non-Parallel Training on GPU](#non-parallel-training-on-gpu)
-   - [Observations](#observations)
-   - [Potential Findings](#potential-findings)
-7. [Conclusion](#conclusion)
-8. [Future Work](#future-work)
-9. [References](#references)
+5. [Conclusion](#conclusion)
+
 
 ## Introduction
 
@@ -48,6 +38,7 @@ Both scripts train an LSTM-based neural network (`HangmanLSTM` from `new_ai_play
 - Python 3.6 or higher
 - PyTorch (with CUDA support for GPU acceleration)
 - NumPy
+- We utilized CUDA 12.4 & matching Torch Library
 
 ### Steps
 
