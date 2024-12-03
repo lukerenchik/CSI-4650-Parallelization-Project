@@ -89,6 +89,8 @@ Both scripts train an LSTM-based neural network (`HangmanLSTM` from `new_ai_play
 - CPU (Paralellized): train_model_non_paralellize.py
 
 - GPU: GPU_Parallelize.py
+  
+- Colab: hangman.ipynb and hangman_cpu.ipynb
 
 ## Conclusion
 
@@ -96,5 +98,5 @@ This project effectively demonstrates how GPUs and parallelism can accelerate ma
 By comparing the training times and performance of the non-parallel and parallel scripts on CPU and GPU, we observe:
 
 - Significant reduction in training time when using GPUs.
-- Potential for further acceleration with parallel data generation.
+- Potential for further acceleration with parallel data generation,especially for CPU setting.
 - Importance of leveraging available hardware resources to optimize machine learning workflows.
