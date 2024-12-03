@@ -59,50 +59,32 @@ Both scripts train an LSTM-based neural network (`HangmanLSTM` from `new_ai_play
    
 
 2. **Install Dependencies**
+   If Using Local HW:
+
+   - Verify NVIDIA CUDA Driver:
+   
+   ```bash
+   nvidia-smi
+
+   - To check CUDA toolkit version, run
+   
+   ```bash 
+   nvcc --version
+   
+   Find matching torch wheel on: https://pytorch.org/
+   
+   Install Remaining Dependency
+   ```bash
+   pip install numpy
+
+   On Colab:
    ```bash
    pip install torch numpy
    
 3. **Prepare the Word List**
     - Ensure you have a words.txt in the project directory with a list of words, one per line.
 
-## Usage
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-### Running the Non-Parallel Training Script
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-### Running the Parallel Training Script
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-## Results & Findings
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-### Training Time Comparison
-
-1. **Non-Parallel on CPU**
-2. **Parallel on CPU**
-3. **Non-Parallel on GPU**
-4. **Parallel on GPU**
-
-### Observations
-
-### Potential Findings
 
 ## Conclusion
 
