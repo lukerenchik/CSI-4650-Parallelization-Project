@@ -8,7 +8,7 @@
 4. [Installation](#installation)
    - [Prerequisites](#prerequisites)
    - [Steps](#steps)
-5. [Usage](#Usage)
+5. [Usage](#usage)
 6. [Conclusion](#conclusion)
 
 
@@ -51,6 +51,7 @@ Both scripts train an LSTM-based neural network (`HangmanLSTM` from `new_ai_play
    
 
 2. **Install Dependencies**
+   
    If Using Local HW:
 
    - Verify NVIDIA CUDA Driver:
@@ -77,14 +78,17 @@ Both scripts train an LSTM-based neural network (`HangmanLSTM` from `new_ai_play
    pip install torch numpy
    ```
    
-3. **Prepare the Word List**
+4. **Prepare the Word List**
     - Ensure you have a words.txt in the project directory with a list of words, one per line.
 
-##Usage
 
-CPU (Non-paralellized): train_model_non_paralellize.py
-CPU (Paralellized): train_model_non_paralellize.py
-GPU: GPU_Parallelize.py
+## Usage
+
+- CPU (Non-paralellized): train_model_non_paralellize.py
+
+- CPU (Paralellized): train_model_non_paralellize.py
+
+- GPU: GPU_Parallelize.py
 
 ## Conclusion
 
