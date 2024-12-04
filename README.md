@@ -22,8 +22,12 @@ The project consists of two main scripts:
 
 - **Non-Parallel Training Script (`train_model_non_parallelize.py`)**: Trains the Hangman AI model without parallel data generation.
 - **Parallel Training Script (`train_model_parallelize.py`)**: Utilizes multiprocessing to generate training data in parallel, and leverages GPU acceleration if available.
+- **words.txt**: The text file includes all the input data for training.
+- **new_ai_player.py**: The ai model for playing the hangman game, which includes the LSTM model that will be import for training.
+-  **hangman.ipynb**: The file will be used for training in colab in a GPU setting, which includes non-parallel and parallel models, and their respective outputs.
+-  **hangman_cpu.ipynb**: The file will be used for training in colab in a CPU setting, which includes non-parallel and parallel models, and their respective outputs.
 
-Both scripts train an LSTM-based neural network (`HangmanLSTM` from `new_ai_player.py`) to predict the next letter in a game of Hangman, based on the current state of the word and the letters already guessed.
+Both scripts train an LSTM-based neural network (`HangmanLSTM` from `new_ai_player.py`) to predict the next letter in a game of Hangman, based on the current state of the word and the letters already guessed. In both hangman.ipynb and hangman_cpu.ipynb files, there are the full description of how parallel and non-parallel models work.
 
 ## Features
 
@@ -90,7 +94,7 @@ Both scripts train an LSTM-based neural network (`HangmanLSTM` from `new_ai_play
 
 - GPU: GPU_Parallelize.py
   
-- Colab: hangman.ipynb and hangman_cpu.ipynb
+- Colab: hangman.ipynb and hangman_cpu.ipynb (upload the "words.txt" and "new_ai_player.py" to Colab and make sure they are saved, then run each shell to see their respective outputs)
 
 ## Conclusion
 
