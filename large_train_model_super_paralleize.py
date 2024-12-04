@@ -127,6 +127,6 @@ if __name__ == "__main__":
     # Train the model in parallel
     print("Starting parallel training...")
     start_time = time.time()
-    train_model_parallel(word_list, model_path="large_hangman_model_super_parallel.pth", num_samples=20000, epochs=25, batch_size=32, lr=0.001, num_workers=4)
+    train_model_parallel(word_list, model_path="trained_models/large_hangman_model_super_parallel.pth", num_samples=20000, epochs=25, batch_size=32, lr=0.001, num_workers=4)
     end_time = time.time()
     print(f"Parallel training completed in {end_time - start_time:.2f} seconds.")

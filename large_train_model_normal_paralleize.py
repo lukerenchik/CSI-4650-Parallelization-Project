@@ -119,6 +119,6 @@ if __name__ == "__main__":
     # Train the model
     print("Starting non-parallel training...")
     start_time = time.time()
-    train_model(word_list, model_path="large_hangman_model_normal_parallel.pth", num_samples=20000, epochs=25, batch_size=32, lr=0.001)
+    train_model(word_list, model_path="trained_models/large_hangman_model_normal_parallel.pth", num_samples=20000, epochs=25, batch_size=32, lr=0.001)
     end_time = time.time()
     print(f"Non-parallel training completed in {end_time - start_time:.2f} seconds.")
